@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="type/css" href="/static/css/libs/bootstrap.min.css">
+    <link rel="stylesheet" type="type/css" href="/static/css/libs/font-awesome.min.css">
+</head>
+
+<body>
+{% block content %}
+    <h1>Hello Flask!!</h1>
+{% endblock %}
+
+{% block footer %} {% endblock %}
+
+{% block script %}
+    <script src="../static/js/libs/bootstrap.min.js">
+
+    </script>
+    <script src="../static/js/libs/jquery.min.js">
+
+    </script>
+{% endblock %}
+</body>
+
+</html>
