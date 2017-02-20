@@ -33,6 +33,10 @@ class Post(db.Model):
     def __repr__(self):
         return '<Article %s>' % self.title
 
+    def add_hit_count(self):
+        self.hit_count += 1
+        self.save()
+
     def save(self):
         db.session.add(self)
         db.session.commit()

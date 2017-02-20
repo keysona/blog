@@ -1,6 +1,32 @@
-{% extends "base.html" %}
-
+{% extends 'base.html' %}
 {% block title %}Keysona{% endblock %}
-{% block content %}
-    <h1>Hello Flask!!!</h1>
+{% block container %}
+    <div class="container">
+        <div class="row section">
+            {% block content %}
+                <div class="col s12 l9">
+                    {% with index = true %}
+                        {% for post in posts %}
+                            {% from 'macros/post-card.html' import render_post_card %}
+                            {{ render_post_card(post, index) }}
+                        {% endfor %}
+                    {% endwith %}
+                    {# pagination #}
+                    {% from 'macros/pagination.html' import render_pagination %}
+                    {% if posts %}
+                        {{ render_pagination(pagination, 'blog.index') }}
+                    {% endif %}
+                </div>
+            {% endblock %}
+
+            {% block aside %}
+                <aside class="col s12 l3">
+                    {% include 'components/info.html' %}
+                    {#          {% from 'components/tag-list.html' import tag_list %}#}
+                    {#            {{ tag_list(tags) }}#}
+                </aside>
+            {% endblock %}
+
+        </div>
+    </div>
 {% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %} {{ post.title }} | Keysona {% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row section">
+            <div class="col s12 m12 l9">
+                {#          <div class="col s12 m12 l9 about-me" style="">#}
+                {% with index = false %}
+                    {% from 'macros/post-card.html' import render_post_card %}
+                    {{ render_post_card(post, index) }}
+                {% endwith %}
+            </div>
+            <div class="col s12 l3">
+                {% include 'components/info.html' %}
+                <div class="hide-on-small-only toc-wrapper card hoverable">
+                    <div style="padding:20px 10px;">
+                        <span class="card-title"><i class="fa fa-list-ul" aria-hidden="true"></i> 目录</span>
+                    </div>
+                    <div class="card-action">
+                        <ul class="table-of-contents"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {#    {% include 'components/rocket.html' %}#}
+{% endblock %}

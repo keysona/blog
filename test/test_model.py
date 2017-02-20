@@ -1,8 +1,9 @@
+from flask import url_for
 from . import TestCase, db, data
 from application.model import Category, Tag, Post, User
 
 
-class TestDatabase(TestCase):
+class TestModel(TestCase):
     def test_category(self):
         with self.app.app_context():
             # query data
@@ -37,3 +38,13 @@ class TestDatabase(TestCase):
             self.assertIsNone(post)
 
             # def test_get_
+
+    def test_post_add_hit_count(self):
+        with self.app.app_context():
+            post = Post.query.first()
+            last_hit_count = post.hit_count
+            hit_counts = 3
+            for i in range(3):
+                rv = self.client.get(url_for('blog.get_post_detail', slug=post.slug))
+            post = Post.query.filter_by(slug=post.slug).first()
+            self.assertEqual(last_hit_count + hit_counts, post.hit_count)
